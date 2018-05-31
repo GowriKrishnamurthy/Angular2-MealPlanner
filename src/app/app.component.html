@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <header></header>
-      <recipes></recipes>
-      <shopping-list></shopping-list>
+      <header (featureSelected)="onNavigate($event)"></header>
+      <recipes *ngIf="featureLoaded==='recipe'"></recipes>
+      <shopping-list *ngIf="featureLoaded!=='recipe'"></shopping-list>
     </div>
   </div>
 </div>
