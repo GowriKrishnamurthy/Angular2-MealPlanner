@@ -1,11 +1,13 @@
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 
 import { Recipe } from './recipe.model'
 import { Ingredient } from '../shared/ingredient.model';
+import { ShoppingListService } from '../shopping-list/shopping-list.service';
+@Injectable()
 
 export class RecipeService {
   recipeSelected=new EventEmitter<Recipe>();
-
+  constructor ( private shoppingListService:ShoppingListService){}
   private recipes:Recipe[]=[
     new Recipe(
       'Lemon Tart', 
@@ -49,5 +51,9 @@ export class RecipeService {
     // return a new array with the exact copy of recipes array
     // this will avoid acccessing this service's recipe array from outside. only a copy is sent 
     return this.recipes.slice();
+  }
+  addIngredientsToShoppingList(ingredients:Ingredient[])
+  {
+      this.shoppingListService.addIngredients(ingredients);     
   }
 }
