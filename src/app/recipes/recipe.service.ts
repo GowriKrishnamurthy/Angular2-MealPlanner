@@ -52,6 +52,11 @@ export class RecipeService {
     // this will avoid acccessing this service's recipe array from outside. only a copy is sent 
     return this.recipes.slice();
   }
+  
+  getRecipe(index:number){
+    return this.recipes[index];
+  }
+
   addIngredientsToShoppingList(ingredients:Ingredient[])
   {
       this.shoppingListService.addIngredients(ingredients);     
