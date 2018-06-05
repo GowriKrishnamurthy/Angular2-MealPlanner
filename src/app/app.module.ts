@@ -15,6 +15,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { AppRoutingModule } from './app-routing-module';
 import { RecipeHomeComponent } from './recipes/recipe-home/recipe-home.component';
+import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { RecipeHomeComponent } from './recipes/recipe-home/recipe-home.component
     DropdownDirective,
     PageNotFoundComponent,
     ErrorPageComponent,
-    RecipeHomeComponent
+    RecipeHomeComponent,
+    RecipeEditComponent
   ],
   imports: [
     BrowserModule,
