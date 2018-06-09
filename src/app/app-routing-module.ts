@@ -9,6 +9,8 @@ import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-it
 import { RecipeHomeComponent } from './recipes/recipe-home/recipe-home.component';
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/recipes',pathMatch: 'full'},
@@ -23,7 +25,10 @@ const appRoutes: Routes = [
     { path: 'shopping-list', component: ShoppingListComponent },
     // {path:'not-found',component:PageNotFoundComponent},
     { path: 'not-found', component: ErrorPageComponent, data: { errorMessage: 'There seems to be some problem.!The page requested was not found!!' } },
-    { path: '**', redirectTo: '/not-found' }
+    { path: 'signup', component: SignupComponent },
+    { path: 'signin', component: SigninComponent },
+    { path: '**', redirectTo: '/not-found' },
+
 ];
 
 @NgModule({
