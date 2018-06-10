@@ -24,7 +24,7 @@ const appRoutes: Routes = [
         ]
     },
     { path: 'shopping-list', component: ShoppingListComponent },
-    // {path:'not-found',component:PageNotFoundComponent},
+    { path: 'error',component: ErrorPageComponent, data: { errorMessage: 'Please signup or sign into the application to access the data!' } },
     { path: 'not-found', component: ErrorPageComponent, data: { errorMessage: 'There seems to be some problem.!The page requested was not found!!' } },
     { path: 'signup', component: SignupComponent },
     { path: 'signin', component: SigninComponent },

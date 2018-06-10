@@ -8,16 +8,7 @@ import { ShoppingListService } from '../shopping-list/shopping-list.service';
 @Injectable()
 
 export class RecipeService implements OnInit {
-  private recipes: Recipe[] = [
-    new Recipe(
-      'Tasty Schnitzel',
-      'A super-tasty Schnitzel - just awesome!',
-      'https://upload.wikimedia.org/wikipedia/commons/7/72/Schnitzel.JPG',
-      [
-        new Ingredient('Meat', 1),
-        new Ingredient('French Fries', 20)
-      ])
-  ];
+  private recipes: Recipe[] = [];
 
   ngOnInit(): void {
 

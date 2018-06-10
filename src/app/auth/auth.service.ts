@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Injectable()
 export class AuthService {
   authToken: string;
-  constructor(private router: Router) {}
+
+  constructor(private router: Router,
+              private activatedRoute:ActivatedRoute) {}
+
   signupUser(email: string, passsword: string) {
     firebase.auth().createUserWithEmailAndPassword(email, passsword)
       .catch(function (error) {
@@ -17,17 +20,32 @@ export class AuthService {
       });
   }
 
+  ngOnInit(): void {
+    firebase.initializeApp({
+      apiKey: "AIzaSyAUzIW-H8etDT91heWkLZpRNXXMXqlpiJs",
+      authDomain: "ng-meal-planner.firebaseapp.com"
+    });
+    
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        user.getIdToken().then(
+          (token: string) => this.authToken = token
+        );
+      }
+    });     
+    }
+  
   signinUser(email: string, passsword: string) {
     firebase.auth().signInWithEmailAndPassword(email, passsword)
       .then(response => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/recipes']);
         firebase.auth().currentUser.getIdToken()
           .then(
             (token: string) => this.authToken = token
           )
       }
       )
-      .catch(error => console.log(error)
+      .catch(error => alert(error)
       );
   }
 
@@ -45,6 +63,7 @@ export class AuthService {
 
   logout(){
     firebase.auth().signOut();
+    this.router.navigate(['error'],{relativeTo:this.activatedRoute});
     this.authToken=null;
   }
 }
