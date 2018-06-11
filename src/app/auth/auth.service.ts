@@ -21,18 +21,22 @@ export class AuthService {
   }
 
   ngOnInit(): void {
-    firebase.initializeApp({
-      apiKey: "AIzaSyAUzIW-H8etDT91heWkLZpRNXXMXqlpiJs",
-      authDomain: "ng-meal-planner.firebaseapp.com"
-    });
-    
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        user.getIdToken().then(
-          (token: string) => this.authToken = token
-        );
-      }
-    });     
+       
+    }
+
+    initializeFirebase(){
+      firebase.initializeApp({
+        apiKey: "AIzaSyAUzIW-H8etDT91heWkLZpRNXXMXqlpiJs",
+        authDomain: "ng-meal-planner.firebaseapp.com"
+      });
+      
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          user.getIdToken().then(
+            (token: string) => this.authToken = token
+          );
+        }
+      });  
     }
   
   signinUser(email: string, passsword: string) {
