@@ -7,38 +7,40 @@ export class AuthService {
   authToken: string;
 
   constructor(private router: Router,
-              private activatedRoute:ActivatedRoute) {}
+    private activatedRoute: ActivatedRoute) { }
 
   signupUser(email: string, passsword: string) {
     firebase.auth().createUserWithEmailAndPassword(email, passsword)
+      .then(response => {
+        this.router.navigate(['/recipes']);
+      })
       .catch(function (error) {
         if (error.code === 'auth/weak-password') {
-          throw 'The password is too weak.';
+          alert('Wrong password.');
+        } else {
+          alert(error.message);
         }
-        else
-          throw error;
       });
   }
 
   ngOnInit(): void {
-       
-    }
+  }
 
-    initializeFirebase(){
-      firebase.initializeApp({
-        apiKey: "AIzaSyAUzIW-H8etDT91heWkLZpRNXXMXqlpiJs",
-        authDomain: "ng-meal-planner.firebaseapp.com"
-      });
-      
-      firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-          user.getIdToken().then(
-            (token: string) => this.authToken = token
-          );
-        }
-      });  
-    }
-  
+  initializeFirebase() {
+    firebase.initializeApp({
+      apiKey: "AIzaSyAUzIW-H8etDT91heWkLZpRNXXMXqlpiJs",
+      authDomain: "ng-meal-planner.firebaseapp.com"
+    });
+
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        user.getIdToken().then(
+          (token: string) => this.authToken = token
+        );
+      }
+    });
+  }
+
   signinUser(email: string, passsword: string) {
     firebase.auth().signInWithEmailAndPassword(email, passsword)
       .then(response => {
@@ -58,16 +60,16 @@ export class AuthService {
       .then(
         (token: string) => this.authToken = token
       )
-      return this.authToken;
+    return this.authToken;
   }
 
-  isAuthenticated(){
-    return this.authToken!=null;
+  isAuthenticated() {
+    return this.authToken != null;
   }
 
-  logout(){
+  logout() {
     firebase.auth().signOut();
-    this.router.navigate(['error'],{relativeTo:this.activatedRoute});
-    this.authToken=null;
+    this.router.navigate(['error'], { relativeTo: this.activatedRoute });
+    this.authToken = null;
   }
 }
