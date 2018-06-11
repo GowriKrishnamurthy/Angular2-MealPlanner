@@ -18,14 +18,13 @@ import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth-guard.service';
 import { RecipeService } from './recipes/recipe.service';
 import { RecipesModule } from './recipes/recipes.module';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent,
     PageNotFoundComponent,
     ErrorPageComponent,
     SignupComponent,
@@ -37,8 +36,8 @@ import { SharedModule } from './shared/shared.module';
     HttpModule,
     RecipesModule,
     SharedModule,
-    AppRoutingModule,
-    
+    ShoppingListModule,
+    AppRoutingModule
   ],
   providers: [ShoppingListService,RecipeService,DataStorageService,AuthService,AuthGuard],
   bootstrap: [AppComponent]
