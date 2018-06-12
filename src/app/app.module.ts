@@ -32,7 +32,6 @@ import { CoreModule } from './core/core.module';
     CoreModule,
     AppRoutingModule
   ],
-  providers: [ShoppingListService,RecipeService,DataStorageService,AuthService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
