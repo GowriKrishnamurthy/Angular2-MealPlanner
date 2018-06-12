@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule, Http } from '@angular/http';
 
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
- import { ShoppingListService } from './shopping-list/shopping-list.service';
+import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { AppRoutingModule } from './app-routing-module';
@@ -13,7 +13,7 @@ import { AuthGuard } from './auth/auth-guard.service';
 import { RecipeService } from './recipes/recipe.service';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { SharedModule } from './shared/shared.module';
-import { AuthModule } from './auth/auth.module'; 
+import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 
 
@@ -25,7 +25,7 @@ import { CoreModule } from './core/core.module';
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpClientModule,
     SharedModule,
     ShoppingListModule,
     AuthModule,

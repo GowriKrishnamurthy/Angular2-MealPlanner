@@ -1,28 +1,33 @@
 import { Injectable } from '@angular/core';
-import { Headers, Response, Http } from '@angular/http';
+
 import 'rxjs/Rx';
 
 import { Recipe } from '../recipes/recipe.model';
 import { Observable } from 'rxjs/Observable';
 import { RecipeService } from '../recipes/recipe.service';
 import { AuthService } from '../auth/auth.service';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataStorageService {
-  dataHeaders = new Headers({ 'Content-Type': 'application/json' });
+  dataHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
   URL = 'https://ng-meal-planner.firebaseio.com/recipes.json';
-  constructor(private http: Http,
+  constructor(private httpClient: HttpClient,
     private recipeService: RecipeService,
     private authService: AuthService) { }
 
   getRecipes() {
     const token = this.authService.getToken();
-    this.http.get(this.URL+'?auth=' + token)
+    this.httpClient.get<Recipe[]>(this.URL,
+      {
+        observe: 'body',
+        responseType: 'json',
+        params:new HttpParams().set('auth',token)
+      })
       .map(
-        (response: Response) => {
-          const recipes: Recipe[] = response.json();
+        (recipes) => {
           if (recipes) {
             for (let recipe of recipes) {
               if (!recipe['ingredients']) {
@@ -41,8 +46,8 @@ export class DataStorageService {
   }
   storeRecipes() {
     const token = this.authService.getToken();
-    return this.http.put(
-      this.URL+'?auth=' + token,
+    return this.httpClient.put(
+      this.URL + '?auth=' + token,
       this.recipeService.getRecipes(),
       { headers: this.dataHeaders }
     );
