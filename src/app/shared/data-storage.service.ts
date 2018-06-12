@@ -6,7 +6,7 @@ import { Recipe } from '../recipes/recipe.model';
 import { Observable } from 'rxjs/Observable';
 import { RecipeService } from '../recipes/recipe.service';
 import { AuthService } from '../auth/auth.service';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -46,10 +46,15 @@ export class DataStorageService {
   }
   storeRecipes() {
     const token = this.authService.getToken();
-    return this.httpClient.put(
-      this.URL + '?auth=' + token,
-      this.recipeService.getRecipes(),
-      { headers: this.dataHeaders }
-    );
+    // return this.httpClient.put(
+    //   this.URL + '?auth=' + token,
+    //   this.recipeService.getRecipes(),
+    //   { headers: this.dataHeaders }
+    // );
+
+    const req=new HttpRequest('PUT',this.URL,this.recipeService.getRecipes(),{
+      reportProgress:true,
+      params:new HttpParams().set('auth',token)
+    })
   }
 }
