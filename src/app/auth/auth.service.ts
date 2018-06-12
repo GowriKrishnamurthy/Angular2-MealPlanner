@@ -12,7 +12,7 @@ export class AuthService {
   signupUser(email: string, passsword: string) {
     firebase.auth().createUserWithEmailAndPassword(email, passsword)
       .then(response => {
-        this.router.navigate(['/recipes']);
+        this.router.navigate(['']);
       })
       .catch(function (error) {
         if (error.code === 'auth/weak-password') {
@@ -44,7 +44,7 @@ export class AuthService {
   signinUser(email: string, passsword: string) {
     firebase.auth().signInWithEmailAndPassword(email, passsword)
       .then(response => {
-        this.router.navigate(['/recipes']);
+        this.router.navigate(['']);
         firebase.auth().currentUser.getIdToken()
           .then(
             (token: string) => this.authToken = token
