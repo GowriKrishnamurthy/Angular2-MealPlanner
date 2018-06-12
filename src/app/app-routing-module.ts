@@ -5,8 +5,8 @@ import { AppComponent } from './app.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { HomeComponent } from './home/home.component';
-
+import { HomeComponent } from './core/home/home.component';
+ 
 const appRoutes: Routes = [
     { path: '', component:HomeComponent},
     { path: 'recipes', loadChildren: './recipes/recipes.module#RecipesModule'},

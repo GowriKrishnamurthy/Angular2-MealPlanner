@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule, Http } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { ShoppingListService } from './shopping-list/shopping-list.service';
+ import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { AppRoutingModule } from './app-routing-module';
@@ -14,16 +13,15 @@ import { AuthGuard } from './auth/auth-guard.service';
 import { RecipeService } from './recipes/recipe.service';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { SharedModule } from './shared/shared.module';
-import { AuthModule } from './auth/auth.module';
-import { HomeComponent } from './home/home.component';
+import { AuthModule } from './auth/auth.module'; 
+import { CoreModule } from './core/core.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     PageNotFoundComponent,
-    ErrorPageComponent,
-    HomeComponent
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +29,7 @@ import { HomeComponent } from './home/home.component';
     SharedModule,
     ShoppingListModule,
     AuthModule,
+    CoreModule,
     AppRoutingModule
   ],
   providers: [ShoppingListService,RecipeService,DataStorageService,AuthService,AuthGuard],
