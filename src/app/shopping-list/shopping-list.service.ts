@@ -18,11 +18,11 @@ export class ShoppingListService {
   //   this.ingredients.push(ingredient);
   //   this.ingredientsChanged.next(this.ingredients.slice());
   // }
-  addIngredients(ingredients: Ingredient[]) {
-    //Add all ingredients to the array in one go!
-    this.ingredients.push(...ingredients)
-    this.ingredientsChanged.next(this.ingredients.slice());
-  }
+  // addIngredients(ingredients: Ingredient[]) {
+  //   //Add all ingredients to the array in one go!
+  //   this.ingredients.push(...ingredients)
+  //   this.ingredientsChanged.next(this.ingredients.slice());
+  // }
   updateIngredient(index: number, newIngredient: Ingredient) {
     this.ingredients[index] = newIngredient;
     this.ingredientsChanged.next(this.ingredients.slice());
