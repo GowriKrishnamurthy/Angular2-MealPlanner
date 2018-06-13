@@ -24,7 +24,7 @@ export class DataStorageService {
       {
         observe: 'body',
         responseType: 'json',
-        params:new HttpParams().set('auth',token)
+        params: new HttpParams().set('auth', token)
       })
       .map(
         (recipes) => {
@@ -52,9 +52,11 @@ export class DataStorageService {
     //   { headers: this.dataHeaders }
     // );
 
-    const req=new HttpRequest('PUT',this.URL,this.recipeService.getRecipes(),{
-      reportProgress:true,
-      params:new HttpParams().set('auth',token)
-    })
+    const req = new HttpRequest('PUT', this.URL, this.recipeService.getRecipes(), {
+      reportProgress: true
+    });
+    return this.httpClient.request(req);
+    // params:new HttpParams().set('auth',token)
+    // })
   }
 }

@@ -1,15 +1,18 @@
 <div class="row">
-  <div class="col-xs-10">
-    <shopping-edit></shopping-edit>
-  </div>
+    <div class="col-xs-10">
+        <shopping-edit></shopping-edit>
+    </div>
 </div>
 <hr>
 <div>
-  <ul class="list-group list-group-item-info">
-    <li class="list-group-item" style="cursor: pointer" 
-    *ngFor="let ingredient of (shoppingListState|async).ingredients;let i=index"
-    (click)="onItemSelected(i)">
-      {{ingredient.name}} ({{ingredient.amount}})
-    </li>
-  </ul>
+    <ul class="list-group list-group-item-info">
+        <li
+            class="list-group-item"
+            style="cursor: pointer"
+            *ngFor="let ingredient of (shoppingListState|async).ingredients;let i=index"
+            (click)="onItemSelected(i)"
+        >
+            {{ingredient.name}} ({{ingredient.amount}})
+        </li>
+    </ul>
 </div>
