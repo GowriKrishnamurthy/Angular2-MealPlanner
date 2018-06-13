@@ -8,16 +8,16 @@ export class ShoppingListService {
   private ingredients: Ingredient[] = [];
   constructor() {
   }
-  getIngredients() {
-    return this.ingredients.slice();
-  }
+  // getIngredients() {
+  //   return this.ingredients.slice();
+  // }
   getIngredient(index: number) {
     return this.ingredients[index];
   }
-  addIngredient(ingredient: Ingredient) {
-    this.ingredients.push(ingredient);
-    this.ingredientsChanged.next(this.ingredients.slice());
-  }
+  // addIngredient(ingredient: Ingredient) {
+  //   this.ingredients.push(ingredient);
+  //   this.ingredientsChanged.next(this.ingredients.slice());
+  // }
   addIngredients(ingredients: Ingredient[]) {
     //Add all ingredients to the array in one go!
     this.ingredients.push(...ingredients)
