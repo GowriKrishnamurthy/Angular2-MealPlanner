@@ -19,12 +19,12 @@ export class DataStorageService {
     private authService: AuthService) { }
 
   getRecipes() {
-    const token = this.authService.getToken();
+    // const token = this.authService.getToken();
     this.httpClient.get<Recipe[]>(this.URL,
       {
         observe: 'body',
         responseType: 'json',
-        params: new HttpParams().set('auth', token)
+        // params: new HttpParams().set('auth', token)
       })
       .map(
         (recipes) => {
@@ -45,7 +45,7 @@ export class DataStorageService {
       );
   }
   storeRecipes() {
-    const token = this.authService.getToken();
+    // const token = this.authService.getToken();
     // return this.httpClient.put(
     //   this.URL + '?auth=' + token,
     //   this.recipeService.getRecipes(),

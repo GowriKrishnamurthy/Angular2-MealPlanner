@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
-import { DataStorageService } from '../../shared/data-storage.service';
-import { AuthService } from '../../auth/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 
+import { DataStorageService } from '../../shared/data-storage.service';
+
+import * as fromApp from '../../store/app.reducers';
+import * as fromAuth from '../../auth/store/auth.reducers';
+import * as AuthActions from '../../auth/store/auth.actions';
 
 @Component({
   selector: 'header',
@@ -11,13 +16,13 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  
+  authState: Observable<fromAuth.State>;
   constructor(private dataStorageService: DataStorageService,
-    private authService:AuthService,
     private router: Router,
-    private activatedRoute: ActivatedRoute) { } 
+    private activatedRoute: ActivatedRoute,
+    private store: Store<fromApp.AppState>) { }
   ngOnInit() {
-
+    this.authState = this.store.select('auth');
   }
   onSave() {
     this.dataStorageService.storeRecipes()
@@ -30,11 +35,7 @@ export class HeaderComponent implements OnInit {
     this.dataStorageService.getRecipes();
     this.router.navigate(['/recipes']);
   }
-  onLogout(){
-    this.authService.logout();
-  }
-
-  isAuth() {
-    return this.authService.isAuthenticated();
+  onLogout() {
+    this.store.dispatch(new AuthActions.Logout());
   }
 }
