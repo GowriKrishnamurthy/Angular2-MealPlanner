@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
-import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +8,12 @@ import { AuthService } from './auth/auth.service';
 })
 export class AppComponent implements OnInit{
   
-  constructor(private authService:AuthService){}
+  constructor(){}
   ngOnInit()  {
-    this.authService.initializeFirebase();
+    firebase.initializeApp({
+      apiKey: "AIzaSyAUzIW-H8etDT91heWkLZpRNXXMXqlpiJs",
+      authDomain: "ng-meal-planner.firebaseapp.com"
+    });
   }
   featureLoaded='recipe';
   onNavigate(event)
