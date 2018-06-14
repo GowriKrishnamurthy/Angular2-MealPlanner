@@ -5,6 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/app.reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -18,6 +19,8 @@ import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { AuthEffects } from './auth/store/auth.effects';
+
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,8 @@ import { AuthEffects } from './auth/store/auth.effects';
     AppRoutingModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([AuthEffects]),
-    StoreRouterConnectingModule
+    StoreRouterConnectingModule,
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   bootstrap: [AppComponent]
 })
