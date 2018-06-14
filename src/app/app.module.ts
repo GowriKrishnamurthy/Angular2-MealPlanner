@@ -7,7 +7,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { AppRoutingModule } from './app-routing-module';
 import { DataStorageService } from './shared/data-storage.service';
-import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth-guard.service';
 import { RecipeService } from './recipes/recipe.service';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';

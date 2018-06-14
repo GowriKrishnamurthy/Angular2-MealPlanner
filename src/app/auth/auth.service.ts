@@ -1,3 +1,4 @@
+/*
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -8,11 +9,11 @@ import * as AuthActions from './store/auth.actions';
 
 @Injectable()
 export class AuthService {
-  // authToken: string;
+   authToken: string;
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
-    private store:Store<fromApp.AppState>) { }
+    private store: Store<fromApp.AppState>) { }
 
   signupUser(email: string, passsword: string) {
     firebase.auth().createUserWithEmailAndPassword(email, passsword)
@@ -21,7 +22,7 @@ export class AuthService {
         firebase.auth().currentUser.getIdToken()
           .then(
             // (token: string) => this.authToken = token
-            (token: string) => {this.store.dispatch(new AuthActions.SetToken(token));}
+            (token: string) => { this.store.dispatch(new AuthActions.SetToken(token)); }
           )
         this.router.navigate(['']);
       })
@@ -43,9 +44,9 @@ export class AuthService {
         firebase.auth().currentUser.getIdToken()
           .then(
             // (token: string) => this.authToken = token
-            (token: string) => {this.store.dispatch(new AuthActions.SetToken(token));}
+            (token: string) => { this.store.dispatch(new AuthActions.SetToken(token)); }
           )
-          this.router.navigate(['']);
+        this.router.navigate(['']);
       }
       )
       .catch(error => alert(error)
@@ -58,25 +59,25 @@ export class AuthService {
       authDomain: "ng-meal-planner.firebaseapp.com"
     });
 
-    // firebase.auth().onAuthStateChanged(user => {
-    //   if (user) {
-    //     user.getIdToken().then(
-    //       (token: string) => this.authToken = token
-    //     );
-    //   }
-    // });
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        user.getIdToken().then(
+          (token: string) => this.authToken = token
+        );
+      }
+    });
   }
-  // getToken() {
-  //   firebase.auth().currentUser.getIdToken()
-  //     .then(
-  //       (token: string) => this.authToken = token
-  //     )
-  //   return this.authToken;
-  // }
+  getToken() {
+    firebase.auth().currentUser.getIdToken()
+      .then(
+        (token: string) => this.authToken = token
+      )
+    return this.authToken;
+  }
 
-  // isAuthenticated() {
-  //   return this.authToken != null;
-  // }
+  isAuthenticated() {
+    return this.authToken != null;
+  }
 
   logout() {
     firebase.auth().signOut();
@@ -85,3 +86,4 @@ export class AuthService {
     this.store.dispatch(new AuthActions.Logout())
   }
 }
+*/

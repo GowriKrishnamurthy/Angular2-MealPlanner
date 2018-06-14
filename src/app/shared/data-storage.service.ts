@@ -5,7 +5,6 @@ import 'rxjs/Rx';
 import { Recipe } from '../recipes/recipe.model';
 import { Observable } from 'rxjs/Observable';
 import { RecipeService } from '../recipes/recipe.service';
-import { AuthService } from '../auth/auth.service';
 import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 
 @Injectable({
@@ -15,8 +14,7 @@ export class DataStorageService {
   dataHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
   URL = 'https://ng-meal-planner.firebaseio.com/recipes.json';
   constructor(private httpClient: HttpClient,
-    private recipeService: RecipeService,
-    private authService: AuthService) { }
+    private recipeService: RecipeService) { }
 
   getRecipes() {
     // const token = this.authService.getToken();
